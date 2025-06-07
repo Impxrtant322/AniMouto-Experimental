@@ -4,14 +4,12 @@
   import { hexToRgb } from "$lib/util";
   import NotificationContainer from "./NotificationContainer.svelte";
 
-  export let notification: 
-  | (Pick<AiringNotification | RelatedMediaAdditionNotification | MediaDataChangeNotification, "createdAt" | "type"> & {
+  export let notification: Pick<AiringNotification | RelatedMediaAdditionNotification | MediaDataChangeNotification, "createdAt" | "type"> & {
     context?: string,
     contexts?: string[],
     episode?: number,
     media: Pick<MediaFragment, "id" | "title" | "img">,
-  })
-  | null;
+  };
   export let unread = false;
 </script>
 
@@ -22,14 +20,14 @@
     </Link>
     <Link to="/media/{notification.media.id}" class="line-clamp-3 mr-6 flex-1" --color-variable={hexToRgb(notification.media.img.color) || "--color-accent"}>
       {#if notification.type === NotificationType.AIRING}
-        {notification.contexts[0] || ""}
-        {notification.episode || ""}
-        {notification.contexts[1] || ""}
-        <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred || ""}</span>
-        {notification.contexts[2] || ""}
+        {notification.contexts[0]}
+        {notification.episode}
+        {notification.contexts[1]}
+        <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred}</span>
+        {notification.contexts[2]}
       {:else}
-        <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred || ""}</span>
-        {notification.context || ""}
+        <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred}</span>
+        {notification.context}
       {/if}
     </Link>
   </NotificationContainer>
