@@ -7,7 +7,7 @@
 As the original developer of this application has said that they are focusing on other projects and not this,
 I have decided to take on the challenge of maintaining this project for years to come.
 
-Click your browser to get the extension:
+Click your browser to get the experimental extension:
 
 [firefox](https://addons.mozilla.org/firefox/downloads/file/4509431/e7c43cbb86e740bc88fb-0.0.5.xpi)
 
