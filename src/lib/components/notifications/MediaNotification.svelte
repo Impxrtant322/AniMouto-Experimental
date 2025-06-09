@@ -13,20 +13,22 @@
   export let unread = false;
 </script>
 
-<NotificationContainer {unread} createdAt={notification.createdAt}>
-  <Link to="/media/{notification.media.id}" class="flex-none">
-    <img src={notification.media.img.large} alt="Key visual" class="w-12 mr-4 object-center object-cover aspect-[3/4]" />
-  </Link>
-  <Link to="/media/{notification.media.id}" class="line-clamp-3 mr-6 flex-1" --color-variable={hexToRgb(notification.media.img.color) || "--color-accent"}>
-    {#if notification.type === NotificationType.AIRING}
-      {notification.contexts[0]}
-      {notification.episode}
-      {notification.contexts[1]}
-      <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred}</span>
-      {notification.contexts[2]}
-    {:else}
-      <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred}</span>
-      {notification.context}
-    {/if}
-  </Link>
-</NotificationContainer>
+{#if notification.media}
+  <NotificationContainer {unread} createdAt={notification.createdAt}>
+    <Link to="/media/{notification.media.id}" class="flex-none">
+      <img src={notification.media.img.large} alt="Key visual" class="w-12 mr-4 object-center object-cover aspect-[3/4]" />
+    </Link>
+    <Link to="/media/{notification.media.id}" class="line-clamp-3 mr-6 flex-1" --color-variable={hexToRgb(notification.media.img.color) || "--color-accent"}>
+      {#if notification.type === NotificationType.AIRING}
+        {notification.contexts[0]}
+        {notification.episode}
+        {notification.contexts[1]}
+        <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred}</span>
+        {notification.contexts[2]}
+      {:else}
+        <span class="font-medium hover:text-variable transition-colors">{notification.media.title.userPreferred}</span>
+        {notification.context}
+      {/if}
+    </Link>
+  </NotificationContainer>
+  {/if}
