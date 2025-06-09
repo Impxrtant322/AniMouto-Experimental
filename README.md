@@ -1,4 +1,4 @@
-# AniMouto Experimental ![GitHub package.json version](https://img.shields.io/github/package-json/v/Impxrtant322/AniMouto-Experimental.svg?color=%230098fd&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/Impxrtant322/AniMouto-Experimental.svg?style=for-the-badge)
+# AniMouto Experimental ![GitHub package.json version](https://img.shields.io/github/package-json/v/Impxrtant322/AniMouto-Experimental) ![GitHub](https://img.shields.io/github/license/Impxrtant322/AniMouto-Experimental)
 
 <a><img align="right" src="https://animouto.moe/logo_128px_bg.png"></a>
 
