@@ -10,6 +10,7 @@
   import Tooltip from "$lib/components/Tooltip.svelte";
   import Section from "$lib/components/Section.svelte";
   import Button from "$lib/components/Button.svelte";
+  import { version } from "../../../../package.json";
   
   const navigate = useNavigate();
   const themes: { theme: Theme, background: String, color: string }[] = [
@@ -176,5 +177,8 @@
       <span class="ml-2">Display Query Limits</span>
     </label>
     <p>Adds an overlay that displays the current rate limit status.</p>
+  </Section>
+  <Section title="Version">
+    <p>{version}</p>
   </Section>
 </div>
