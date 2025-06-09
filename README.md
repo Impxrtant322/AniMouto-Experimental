@@ -13,6 +13,10 @@ Click your browser to get the extension:
 
 [chromium](./downloads/chromium/)
 * Chromium does not yet have a extension link. You will have to manually download the folder and manually add it as an extension in the chrome extensions tab.
+1. Click the above Chromium link, which will direct you to the chromium downloads.
+2. Download the entire chromium folder.
+3. Manage your extensions, click "Developer Mode" at the top right, and click "Load Unpacked"
+4. Browse to your chromium folder and load the folder into chrome.
 
 The original owner reserves all rights to this application and may request for this repository to be privated.
 
