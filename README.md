@@ -7,16 +7,15 @@
 As the original developer of this application has said that they are focusing on other projects and not this,
 I have decided to take on the challenge of maintaining this project for years to come.
 
-Click your browser to get the experimental extension:
+Click [here](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) and download the correct file for your browser.
 
-[firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/download/v0.0.8/e7c43cbb86e740bc88fb-0.0.8.xpi)
+[firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) is automatically installed onto your browser and will automatically check for updates.
 
-[chromium](./downloads/chromium/)
-* Chromium does not yet have a extension link. You will have to manually download the folder and manually add it as an extension in the chrome extensions tab.
-1. Click the above Chromium link, which will direct you to the chromium downloads.
-2. Download the entire chromium folder.
+[Chromium](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) does not yet have a extension link. You will have to manually download the zip file and manually add it as an extension in the chrome extensions tab.
+1. Click the above Chromium link, which will direct you to the latest release. Download the chromium zip file.
+2. Unzip the chromium zip file.
 3. Manage your extensions, click "Developer Mode" at the top right, and click "Load Unpacked"
-4. Browse to your chromium folder and load the folder into chrome.
+4. Browse to your chromium folder and load the folder contents into chrome.
 
 The original owner reserves all rights to this application and may request for this repository to be privated.
 
