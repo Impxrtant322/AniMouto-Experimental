@@ -12,7 +12,7 @@ Click your browser to get the extension:
 [firefox](https://addons.mozilla.org/firefox/downloads/file/4509431/e7c43cbb86e740bc88fb-0.0.5.xpi)
 
 [chromium](./downloads/chromium/)
-* Chromium does not yet have a extension link. You will have to manually download the folder and manually add it as an extension in the chrome developer extensions tab.
+* Chromium does not yet have a extension link. You will have to manually download the folder and manually add it as an extension in the chrome extensions tab.
 
 The original owner reserves all rights to this application and may request for this repository to be privated.
 
