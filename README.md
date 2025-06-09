@@ -9,7 +9,7 @@ I have decided to take on the challenge of maintaining this project for years to
 
 Click your browser to get the experimental extension:
 
-[firefox](https://github.com/Impxrtant322/AniMouto-Experimental/raw/refs/heads/master/downloads/firefox/e7c43cbb86e740bc88fb-0.0.8.xpi)
+[firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/download/v0.0.8/e7c43cbb86e740bc88fb-0.0.8.xpi)
 
 [chromium](./downloads/chromium/)
 * Chromium does not yet have a extension link. You will have to manually download the folder and manually add it as an extension in the chrome extensions tab.
