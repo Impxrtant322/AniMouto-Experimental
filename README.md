@@ -1,14 +1,28 @@
-# AniMouto ![GitHub package.json version](https://img.shields.io/github/package-json/v/TehNut/AniMouto.svg?color=%230098fd&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/TehNut/AniMouto.svg?style=for-the-badge) [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/ilhjhegbgdghfkdgeahkpikkjgaaoklh.svg?label=Chrome&style=for-the-badge&logo=google-chrome)](https://chrome.google.com/webstore/detail/animouto/ilhjhegbgdghfkdgeahkpikkjgaaoklh) [![Mozilla Add-on](https://img.shields.io/amo/rating/animouto.svg?label=Firefox&style=for-the-badge&logo=mozilla-firefox)](https://addons.mozilla.org/en-US/firefox/addon/animouto/)
+# AniMouto Experimental ![GitHub package.json version](https://img.shields.io/github/package-json/v/Impxrtant322/AniMouto-Experimental.svg?color=%230098fd&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/Impxrtant322/AniMouto-Experimental.svg?style=for-the-badge)
 
-<a href="https://animouto.moe/"><img align="right" src="https://animouto.moe/logo_128px_bg.png"></a>
+<a><img align="right" src="https://animouto.moe/logo_128px_bg.png"></a>
 
-### Let an imouto enhance your AniList experience.
+### Experimental version of AniMouto with bug fixes. NOT THE ORIGINAL, DEVELOPED SEPERATELY.
+
+As the original developer of this application has said that they are focusing on other projects and not this,
+I have decided to take on the challenge of maintaining this project for years to come.
+
+Click your browser to get the extension:
+
+[firefox](https://addons.mozilla.org/firefox/downloads/file/4509431/e7c43cbb86e740bc88fb-0.0.5.xpi)
+
+[chromium](./downloads/chromium/)
+* Chromium does not yet have a extension link. You will have to manually download the folder and manually add it as an extension in the chrome developer extensions tab.
+
+The original owner reserves all rights to this application and may request for this repository to be privated.
+
+### AniMouto original description:
 
 AniMouto is an unofficial AniList extension which allows quick access to many features of AniList including your current Airing, Anime, and Manga lists, notifications, and search.
 
 AniMouto is designed to feel like a true extension to AniList by providing a very similar look and feel.
 
-Get it for [Chrome](https://chrome.google.com/webstore/detail/animouto/ilhjhegbgdghfkdgeahkpikkjgaaoklh) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/animouto/).
+Get it for [Chrome]() or [Firefox]().
 
 ## Images
 
@@ -21,7 +35,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed.
 Run these commands to get the project locally:
 
 ```sh
-git clone https://github.com/TehNut/AniMouto.git # or clone your own fork
+git clone https://github.com/Impxrtant322/AniMouto-Experimental.git # or clone your own fork
 cd AniMouto
 npm install
 npm run codegen:graphql
@@ -34,7 +48,3 @@ The dependencies should now all be installed. Next, run the `watch:*` script. Th
 #### `npm run build:*`
 
 Builds the project for all supported browser environments and places them into `/dist/`.
-
-#### `npm run package`
-
-This is currently not yet implemented.
