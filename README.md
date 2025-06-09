@@ -17,7 +17,7 @@ Click [here](https://github.com/Impxrtant322/AniMouto-Experimental/releases/late
 3. Manage your extensions, click "Developer Mode" at the top right, and click "Load Unpacked"
 4. Browse to your chromium folder and load the folder contents into chrome.
 
-The original owner reserves all rights to this application and may request for this repository to be privated.
+### The original owner reserves all rights to this application and may request for this repository to be privated.
 
 ### AniMouto original description:
 
