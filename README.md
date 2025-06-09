@@ -7,7 +7,7 @@
 As the original developer of this application has said that they are focusing on other projects and not this,
 I have decided to take on the challenge of maintaining this project for years to come.
 
-Click [here](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) and download the correct file for your browser.
+Click [here](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) and download the correct experimental file for your browser.
 
 [firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) is automatically installed onto your browser and will automatically check for updates.
 
