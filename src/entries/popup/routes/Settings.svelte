@@ -178,7 +178,5 @@
     </label>
     <p>Adds an overlay that displays the current rate limit status.</p>
   </Section>
-  <Section title="Version">
-    <p>{version}</p>
-  </Section>
+    <p style="text-align: center">Version: {version}</p>
 </div>
