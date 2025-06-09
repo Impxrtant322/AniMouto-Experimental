@@ -43,7 +43,9 @@
     <span class="justify-self-end">Progress: {listEntry.progress}{maxProgress ? "/" + maxProgress : ""}</span>
   </svelte:fragment>
   <div class="absolute w-full bottom-0 bg-overlay/70 text-white backdrop-blur-sm font-semibold text-center text-xs opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all">
-    <div class="w-full h-full" use:ripple>
+    <div class="w-full h-full" use:ripple={{
+      color: willOverProgress ? 'rgb(232, 93, 117)' : 'currentColor' 
+    }}>
       <button on:click|stopPropagation|preventDefault={incrementProgress} class="px-2 py-2 hover:font-bold hover:text-variable transition-all" >
         {listEntry.progress}{maxProgress ? "/" + maxProgress : ""}
         {#if !willOverProgress}
