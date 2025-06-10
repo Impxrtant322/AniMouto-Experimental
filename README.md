@@ -9,7 +9,7 @@ I have decided to take on the challenge of maintaining this project for years to
 
 Click [here](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) and download the correct experimental file for your browser.
 
-[firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) is automatically installed onto your browser and will automatically check for updates.
+[Firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) is automatically installed onto your browser and will automatically check for updates.
 
 [Chromium](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) does not yet have a extension link. You will have to manually download the zip file and manually add it as an extension in the chrome extensions tab.
 1. Click the above Chromium link, which will direct you to the latest release. Download the chromium zip file.
