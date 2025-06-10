@@ -32,10 +32,15 @@
 	$: listId = entry?.mediaListEntry.id;
 	$: name = $user?.name;
 	$: if (currentId && name) {
+		getData();
+	}
+
+	async function getData() {
 		media = queryStore({
 			client,
 			query: GetFullUserMediaListDocument,
 			variables: { userName: name, mediaId: currentId },
+			requestPolicy: "network-only"
 		});
 		initialized = false;
 	}
@@ -113,30 +118,27 @@
 	}
 	
 	async function save() {
-
-		let variables = {
-			mediaId: currentId,
-			saveMediaListEntryI: listId,
-			progress: progress,
-			status: status === "" ? undefined : status,
-			score: score,
-			repeat: rewatchCount,
-			notes: notes,
-			completedAt: parseISO(finishDate),
-			startedAt: parseISO(startDate)
-		}
-
 		try {
 			isSaving = true;
-			let result = mutationStore({
-				client,
-				query: UpdateMediaListDocument,
-				variables: variables
+
+			let {data, error} = await client.mutation(UpdateMediaListDocument, {
+				mediaId: currentId,
+				saveMediaListEntryId: listId,
+				progress: progress,
+				status: status === "" ? undefined : status,
+				score: score,
+				repeat: rewatchCount,
+				notes: notes,
+				completedAt: parseISO(finishDate),
+				startedAt: parseISO(startDate)
 			})
 
-			if(result) {
+			if(!error) {
+				getData();
 				console.log("Saved!")
 				dispatch("saved")
+			} else {
+				console.log("Error saving!")
 			}
 		} finally {
 			isSaving = false;
@@ -145,9 +147,9 @@
 
 </script>
 
-<div class="fixed inset-0 z-20 flex items-center justify-center bg-background">
+<div class="fixed -top-5 bottom-0 left-0 right-0 flex items-center justify-center">
 	<div
-		class="absolute inset-0 backdrop-blur-[10px] bg-background/40"
+		class="absolute inset-0 backdrop-blur-[10px]"
 		on:click={close}
 	/>
 
@@ -170,7 +172,7 @@
 				class="absolute left-6 bottom-4 transform translate-y-1/2 flex items-end space-x-4"
 			>
 				<img
-					src={$media.data?.MediaList.media.coverImage.medium}
+					src={$media.data?.MediaList.media.coverImage.large}
 					alt="{$media.data?.MediaList.media.title.userPreferred} poster"
 					class="w-24 sm:w-32 rounded-xl shadow-lg border-2 border-white"
 				/>

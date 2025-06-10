@@ -23,7 +23,7 @@ query getFullUserMediaList($userName: String, $mediaId: Int, $version: Int) {
 			coverImage {
 				extraLarge
 				color
-				medium
+				large
 			}
 			title {
 				english
