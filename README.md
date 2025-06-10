@@ -1,4 +1,4 @@
-# AniMouto Experimental ![GitHub package.json version](https://img.shields.io/github/package-json/v/Impxrtant322/AniMouto-Experimental?style=flat-square) ![GitHub](https://img.shields.io/github/license/Impxrtant322/AniMouto-Experimental?style=flat-square) [![Discord](https://img.shields.io/discord/1311848924239106098?logo=discord&logoColor=white&label=Discord&style=flat-square)](https://discord.gg/bpEGPyH55Q)
+# AniMouto Experimental [![GitHub package.json version](https://img.shields.io/github/package-json/v/Impxrtant322/AniMouto-Experimental?style=flat-square)](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) [![GitHub](https://img.shields.io/github/license/Impxrtant322/AniMouto-Experimental?style=flat-square)](https://en.wikipedia.org/wiki/MIT_License) [![Discord](https://img.shields.io/discord/1311848924239106098?logo=discord&logoColor=white&label=Discord&style=flat-square)](https://discord.gg/bpEGPyH55Q)
 
 <a><img align="right" src="https://animouto.moe/logo_128px_bg.png"></a>
 
