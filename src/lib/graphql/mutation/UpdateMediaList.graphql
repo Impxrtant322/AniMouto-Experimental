@@ -1,0 +1,6 @@
+mutation UpdateMediaList($saveMediaListEntryId: Int, $mediaId: Int, $progress: Int, $status: MediaListStatus, $score: Float, $repeat: Int, $notes: String, $completedAt: FuzzyDateInput, $startedAt: FuzzyDateInput) {
+  SaveMediaListEntry(id: $saveMediaListEntryId, mediaId: $mediaId, progress: $progress, status: $status, score: $score, repeat: $repeat, notes: $notes, completedAt: $completedAt, startedAt: $startedAt) {
+    __typename
+    updatedAt
+  }
+}

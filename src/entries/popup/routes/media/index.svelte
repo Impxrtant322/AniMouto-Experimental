@@ -141,7 +141,7 @@
         {#if $loggedIn}
           <div class="grid grid-cols-5 gap-2">
             <Tooltip placement="right" content="Open editor">
-              <Button on:click={() => showEditor = true} icon={faFilePen} class="w-full py-2" disabled={false} />
+              <Button on:click={() => showEditor = true} icon={faFilePen} class="w-full py-2" disabled={canAddPlanning} />
             </Tooltip>
             <Tooltip placement="right" content="Add to planning">
               <Button on:click={() => setStatus(MediaListStatus.PLANNING)} icon={faNotesMedical} class="w-full py-2" disabled={!canAddPlanning} />

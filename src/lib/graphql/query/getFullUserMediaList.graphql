@@ -1,29 +1,38 @@
-query getFullUserMediaList($userName: String, $mediaId: Int) {
-  MediaList(userName: $userName, mediaId: $mediaId) {
-    completedAt {
-      day
-      month
-      year
-    }
-    createdAt
-    customLists
-    notes
-    progress
-    progressVolumes
-    repeat
-    score
-    startedAt {
-      day
-      month
-      year
-    }
-    status
-    media {
-      bannerImage
-      coverImage {
-        extraLarge
-        color
-      }
-    }
-  }
+query getFullUserMediaList($userName: String, $mediaId: Int, $version: Int) {
+	MediaList(userName: $userName, mediaId: $mediaId) {
+		completedAt {
+			day
+			month
+			year
+		}
+		createdAt
+		customLists
+		notes
+		progress
+		progressVolumes
+		repeat
+		score
+		startedAt {
+			day
+			month
+			year
+		}
+		status
+		media {
+			bannerImage
+			coverImage {
+				extraLarge
+				color
+				medium
+			}
+			title {
+				english
+				native
+				romaji
+				userPreferred
+			}
+			format
+			status(version: $version)
+		}
+	}
 }

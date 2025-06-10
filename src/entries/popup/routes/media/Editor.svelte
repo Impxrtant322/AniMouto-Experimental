@@ -2,57 +2,44 @@
 	import { createEventDispatcher } from "svelte";
 	import { fade } from "svelte/transition";
 	import { useParams } from "svelte-navigator";
-	import { queryStore, getContextClient } from "@urql/svelte";
+	import { queryStore, getContextClient, mutationStore } from "@urql/svelte";
 	import Icon from "svelte-fa";
 	import { faTimes } from "@fortawesome/free-solid-svg-icons";
 	import {
 		GetFullUserMediaListDocument,
 		GetMediaByIdDocument,
 		MediaListStatus,
+		UpdateMediaListDocument,
+		type FuzzyDateInput,
 		type GetMediaByIdQuery,
 	} from "@anilist/graphql";
 	import { textify, hexToRgb } from "$lib/util";
 	import Button from "$lib/components/Button.svelte";
-	import { user } from "$lib/store";
+	import { user, extensionConfig } from "$lib/store";
 
 	export let entry: GetMediaByIdQuery["Media"] | null;
 
 	const dispatch = createEventDispatcher();
 	const params = useParams();
 	const client = getContextClient();
+	let fmt = (n: number) => `${n}`.padStart(2, "0");
 
-	$: media = queryStore({
-		client,
-		query: GetMediaByIdDocument,
-		variables: {
-			id: parseInt($params.id),
-		},
-	});
-	/*
-  $: {
-    let currentId = entry?.id;
-    let name = $user?.name;
+	let media;
+	let initialized = false;
+	let isSaving = false;
 
-    let isIdTruthy = !!currentId;
-    let isNameTruthy = !!name;
+	$: currentId = entry?.id;
+	$: listId = entry?.mediaListEntry.id;
+	$: name = $user?.name;
+	$: if (currentId && name) {
+		media = queryStore({
+			client,
+			query: GetFullUserMediaListDocument,
+			variables: { userName: name, mediaId: currentId },
+		});
+		initialized = false;
+	}
 
-  console.log('Is ID considered truthy?', isIdTruthy);
-  console.log('Is Name considered truthy?', isNameTruthy);
-
-    if (isIdTruthy && isNameTruthy) {
-      console.log("Running media search")
-      media = queryStore({
-        client,
-        query: GetFullUserMediaListDocument,
-        variables: { userName: name, mediaId: currentId }
-      });
-    }
-
-    console.log($media)
-  }
-    */
-
-	// form state
 	let status: MediaListStatus | "" = "";
 	let score = 0;
 	let progress = 0;
@@ -60,25 +47,102 @@
 	let finishDate = "";
 	let rewatchCount = 0;
 	let notes = "";
+	let orig = {
+			status: "" as MediaListStatus | "",
+			score: 0,
+			progress: 0,
+			rewatchCount: 0,
+			notes: "",
+			startedAt: "",
+			CompletedAt: ""
+		}
 
-	/*
-  if($media.data?.MediaList) {
-    status = $media.data.MediaList.status || null;
-    score = $media.data.MediaList.score || 0;
-    progress = $media.data.MediaList.progress || 0;
-    startDate = ""
-    finishDate = ""
-    rewatchCount = $media.data.MediaList.repeat || 0;
-    notes = $media.data.MediaList.notes || "";
-  }
-    */
+	$: if ($media.data?.MediaList && !initialized) {
+		status = $media.data?.MediaList.status || null;
+		score = $media.data?.MediaList.score || 0;
+		progress = $media.data?.MediaList.progress || 0;
+		rewatchCount = $media.data?.MediaList.repeat || 0;
+		notes = $media.data?.MediaList.notes || "";
+
+		let {day, month, year} = $media.data?.MediaList.startedAt ?? {};
+		if (day && month && year) {
+			startDate = `${year}-${fmt(month)}-${fmt(day)}`;
+		}
+
+		let { day2, month2, year2 } = $media.data?.MediaList.completedAt ?? {};
+		if (day2 && month2 && year2) {
+			finishDate = `${year2}-${fmt(month2)}-${fmt(day2)}`;
+		}
+
+		orig = {
+			status: status,
+			score: score,
+			progress: progress,
+			rewatchCount: rewatchCount,
+			notes: notes,
+			startedAt: startDate,
+			CompletedAt: finishDate
+		}
+
+		initialized = true;
+	}
+
+	$: isDirty =
+		status !== orig.status ||
+		score !== orig.score ||
+		progress !== orig.progress ||
+		startDate !== orig.startedAt ||
+		finishDate !== orig.CompletedAt ||
+		rewatchCount !== orig.rewatchCount ||
+		notes !== orig.notes;
 
 	function close() {
 		dispatch("close");
 	}
-	function save() {
-		close();
+
+	function parseISO(s: string): FuzzyDateInput | undefined {
+		if(!s) return undefined;
+		let [y,m,d] = s.split("-").map(Number);
+		return y && m && d ? {year: y, month: m, day: d} : undefined;
 	}
+
+	function formatFuzzyDate(date?: { year?: number; month?: number; day?: number } | null): string {
+  	if (!date?.year || !date.month || !date.day) return "";
+  	const pad2 = (n: number) => `${n}`.padStart(2, "0");
+  	return `${date.year}-${pad2(date.month)}-${pad2(date.day)}`;
+	}
+	
+	async function save() {
+
+		let variables = {
+			mediaId: currentId,
+			saveMediaListEntryI: listId,
+			progress: progress,
+			status: status === "" ? undefined : status,
+			score: score,
+			repeat: rewatchCount,
+			notes: notes,
+			completedAt: parseISO(finishDate),
+			startedAt: parseISO(startDate)
+		}
+
+		try {
+			isSaving = true;
+			let result = mutationStore({
+				client,
+				query: UpdateMediaListDocument,
+				variables: variables
+			})
+
+			if(result) {
+				console.log("Saved!")
+				dispatch("saved")
+			}
+		} finally {
+			isSaving = false;
+		}
+	}
+
 </script>
 
 <div class="fixed inset-0 z-20 flex items-center justify-center bg-background">
@@ -94,11 +158,11 @@
 		in:fade={{ duration: 200 }}
 	>
 		<div
-			class="relative w-full {$media.data.Media.bannerImage
+			class="relative w-full {$media.data?.MediaList.media.bannerImage
 				? 'h-[20vh]'
 				: 'h-[24vh] -mt-[4vh]'} bg-cover bg-center"
-			style="background-image:url({$media.data.Media.bannerImage ||
-				$media.data.Media.coverImage.extraLarge})"
+			style="background-image:url({$media.data?.MediaList.media.bannerImage ||
+				$media.data?.MediaList.media.coverImage.extraLarge})"
 		>
 			<div class="h-full w-full bg-gradient-to-b from-shadow/40 to-shadow/60" />
 
@@ -106,16 +170,17 @@
 				class="absolute left-6 bottom-4 transform translate-y-1/2 flex items-end space-x-4"
 			>
 				<img
-					src={$media.data.Media.coverImage.medium}
-					alt="{$media.data.Media.title.userPreferred} poster"
+					src={$media.data?.MediaList.media.coverImage.medium}
+					alt="{$media.data?.MediaList.media.title.userPreferred} poster"
 					class="w-24 sm:w-32 rounded-xl shadow-lg border-2 border-white"
 				/>
 				<div class="text-text drop-shadow-md">
 					<h2 class="text-xl sm:text-2xl font-bold leading-tight">
-						{$media.data.Media.title.userPreferred}
+						{$media.data?.MediaList.media.title.userPreferred}
 					</h2>
 					<p class="text-sm sm:text-base text-text-secondary">
-						{$media.data.Media.format} • {$media.data.Media.status}
+						{$media.data?.MediaList.media.format} • {$media.data?.MediaList
+							.media.status}
 					</p>
 				</div>
 			</div>
@@ -129,9 +194,12 @@
 		</div>
 
 		<div
-			class="w-full mt-16 px-6 pb-6 relative z-10"
-			style="--color-variable:{hexToRgb($media.data.Media.coverImage.color) ||
-				'var(--color-accent)'}"
+			class="w-full px-6 pb-6 relative z-10"
+			class:mt-16={!$extensionConfig.theme.wide}
+			class:mt-24={$extensionConfig.theme.wide}
+			style="--color-variable:{hexToRgb(
+				$media.data?.MediaList.media.coverImage.color
+			) || 'var(--color-accent)'}"
 		>
 			<div class="grid grid-cols-3 gap-2">
 				<div>
@@ -229,7 +297,7 @@
 				/>
 			</div>
 			<div class="mt-6 flex justify-end space-x-2">
-				<Button type="INFO" on:click={save}>Save</Button>
+				<Button type="INFO" on:click={save} disabled={!isDirty || isSaving}>{#if isSaving}Saving...{:else}Save{/if}</Button>
 				<Button type="ERROR" on:click={close}>Cancel</Button>
 			</div>
 		</div>
