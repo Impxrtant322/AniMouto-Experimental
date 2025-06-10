@@ -13,8 +13,11 @@
   import SocialView from "./Social.svelte";
   import Tooltip from "$lib/components/Tooltip.svelte";
   import Button from "$lib/components/Button.svelte";
+  import Editor from "./Editor.svelte";
   import { loggedIn, extensionConfig } from "$lib/store";
   import { textify, hexToRgb, readableTime, parseSeconds } from "$lib/util";
+
+  let media;
 
   const params = useParams();
   const client = getContextClient();
@@ -26,12 +29,15 @@
     }
   });
 
+  $: entry = $media.data?.Media
+
   $: canAddPlanning = $media.data?.Media.mediaListEntry === null;
   $: canRepeat = $media.data?.Media.mediaListEntry?.status === "COMPLETED";
   $: canAddCurrent = $media.data?.Media && $media.data?.Media.status !== "NOT_YET_RELEASED" && ![ "CURRENT", "COMPLETED", "REPEATING" ].includes($media.data?.Media.mediaListEntry?.status);
   $: isStarred = $extensionConfig.list.starredMedia.includes($media.data?.Media.id);
 
   let subView: typeof GeneralView | typeof DetailsView | typeof StatsView | typeof SocialView = GeneralView;
+  let showEditor = false;
 
   function toggleFavorite() {
     mutationStore({
@@ -134,8 +140,8 @@
         </div>
         {#if $loggedIn}
           <div class="grid grid-cols-5 gap-2">
-            <Tooltip placement="right" content="Open editor (Not yet implemented)">
-              <Button icon={faFilePen} class="w-full py-2" disabled={true} />
+            <Tooltip placement="right" content="Open editor">
+              <Button on:click={() => showEditor = true} icon={faFilePen} class="w-full py-2" disabled={canAddPlanning} />
             </Tooltip>
             <Tooltip placement="right" content="Add to planning">
               <Button on:click={() => setStatus(MediaListStatus.PLANNING)} icon={faNotesMedical} class="w-full py-2" disabled={!canAddPlanning} />
@@ -182,5 +188,8 @@
       </a>
     </div>
     <svelte:component this={subView} {media} />
+    {#if showEditor}
+      <Editor {entry} on:close={() => showEditor = false} />
+    {/if}
   </div>
 </QueryContainer>
