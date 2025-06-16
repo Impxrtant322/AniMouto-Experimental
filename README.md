@@ -9,9 +9,9 @@ I have decided to take on the challenge of maintaining this project for years to
 
 #### Click below to get your respective extension:
 
-[Firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) is automatically installed onto your browser and will automatically check for updates.
+[Firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) will automatically check for updates after downloading the extension.
 
-[Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef) is officially on the web store (unlisted)! This means you get automatic updates!
+[Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef) is officially on the web store (unlisted)! Download the extension from there for automatic updates!
 
 - If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
 
