@@ -7,17 +7,13 @@
 As the original developer of this application has said that they are focusing on other projects and not this,
 I have decided to take on the challenge of maintaining this project for years to come.
 
-Click [here](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) and download the correct experimental file for your browser.
+#### Click below to get your respective extension:
 
 [Firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) is automatically installed onto your browser and will automatically check for updates.
 
-[Chromium](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) does not yet have a extension link. You will have to manually download the zip file and manually add it as an extension in the chrome extensions tab.
-1. Click the above Chromium link, which will direct you to the latest release. Download the chromium zip file.
-2. Unzip the chromium zip file.
-3. Manage your extensions, click "Developer Mode" at the top right, and click "Load Unpacked"
-4. Browse to your chromium folder and load the folder contents into chrome.
+[Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef) is officially on the web store (unlisted)! This means you get automatic updates!
 
-If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
+- If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
 
 ### The original owner reserves all rights to this application and may request for this repository to be privated.
 
