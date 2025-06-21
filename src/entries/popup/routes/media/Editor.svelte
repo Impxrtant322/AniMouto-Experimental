@@ -28,6 +28,8 @@
 	let initialized = false;
 	let isSaving = false;
 	let maxProgress = 0;
+	let isWatching = false;
+	let totalEpisodes = 5000;
 
 	$: currentId = entry?.id;
 	$: listId = entry?.mediaListEntry.id;
@@ -69,6 +71,11 @@
 		progress = $media.data?.MediaList.progress || 0;
 		rewatchCount = $media.data?.MediaList.repeat || 0;
 		notes = $media.data?.MediaList.notes || "";
+		totalEpisodes = $media.data?.MediaList.media.episodes || $media.data?.MediaList.media.chapters || 5000
+
+		if(status == MediaListStatus.CURRENT) {
+			isWatching = true;
+		}
 
 		if ($media.data?.MediaList.media.nextAiringEpisode?.episode) {
 			maxProgress = $media.data?.MediaList.media.nextAiringEpisode?.episode - 1;
@@ -111,6 +118,12 @@
 		rewatchCount !== orig.rewatchCount ||
 		notes !== orig.notes;
 
+	$: if(isWatching && progress == totalEpisodes) {
+		status = MediaListStatus.COMPLETED
+	} else if(isWatching && progress !== totalEpisodes){
+		status = MediaListStatus.CURRENT
+	}
+
 	function close() {
 		dispatch("close");
 	}
@@ -146,7 +159,15 @@
 			});
 
 			if (!error) {
-				getData();
+				orig = {
+					status: status,
+					score: score,
+					progress: progress,
+					rewatchCount: rewatchCount,
+					notes: notes,
+					startedAt: startDate,
+					CompletedAt: finishDate,
+				};
 				console.log("Saved!");
 				dispatch("saved");
 			} else {
