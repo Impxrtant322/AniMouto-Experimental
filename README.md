@@ -10,7 +10,8 @@ I have decided to take on the challenge of maintaining this project for years to
 #### Click below to get your respective extension:
 
 [Firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) will automatically check for updates after downloading the extension.
-    - Working on getting firefox listed on the AMO so I don't have to keep updates.json updated.
+
+- Working on getting firefox listed on the AMO so I don't have to keep updates.json updated.
 
 [Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef) is officially on the web store (unlisted)! Download the extension from there for automatic updates!
 
