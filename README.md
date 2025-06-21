@@ -2,10 +2,10 @@
 
 <a><img align="right" src="https://animouto.moe/logo_128px_bg.png"></a>
 
-### Experimental version of AniMouto with new features and bug fixes. NOT THE ORIGINAL, DEVELOPED SEPERATELY. If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
+### Experimental version of AniMouto with new features and bug fixes. NOT THE ORIGINAL, DEVELOPED SEPERATELY.
 
 As the original developer of this application has said that they are focusing on other projects and not this,
-I have decided to take on the challenge of maintaining this project for years to come.
+I have decided to take on the challenge of maintaining this project for years to come. If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
 
 #### Click below to get your respective extension:
 
