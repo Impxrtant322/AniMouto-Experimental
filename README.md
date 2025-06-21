@@ -2,7 +2,7 @@
 
 <a><img align="right" src="https://animouto.moe/logo_128px_bg.png"></a>
 
-### Experimental version of AniMouto with new features and bug fixes. NOT THE ORIGINAL, DEVELOPED SEPERATELY.
+### Experimental version of AniMouto with new features and bug fixes. NOT THE ORIGINAL, DEVELOPED SEPERATELY. If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
 
 As the original developer of this application has said that they are focusing on other projects and not this,
 I have decided to take on the challenge of maintaining this project for years to come.
@@ -14,8 +14,6 @@ I have decided to take on the challenge of maintaining this project for years to
 - Working on getting firefox listed on the AMO so I don't have to keep updates.json updated.
 
 [Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef) is officially on the web store (unlisted)! Download the extension from there for automatic updates!
-
-- If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
 
 ### The original owner reserves all rights to this application and may request for this repository to be privated.
 
