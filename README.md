@@ -7,13 +7,11 @@
 As the original developer of this application has said that they are focusing on other projects and not this,
 I have decided to take on the challenge of maintaining this project for years to come. If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
 
-#### Click below to get your respective extension:
+#### Click below to get your respective extension from their web store:
 
-[Firefox](https://github.com/Impxrtant322/AniMouto-Experimental/releases/latest) will automatically check for updates after downloading the extension.
+[Firefox](https://addons.mozilla.org/en-GB/firefox/addon/animouto-experimental/)
 
-- Working on getting firefox listed on the AMO so I don't have to keep updates.json updated.
-
-[Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef) is officially on the web store (unlisted)! Download the extension from there for automatic updates!
+[Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef)
 
 ### The original owner reserves all rights to this application and may request for this repository to be privated.
 
