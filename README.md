@@ -7,11 +7,17 @@
 As the original developer of this application has said that they are focusing on other projects and not this,
 I have decided to take on the challenge of maintaining this project for years to come. If you have questions, pop into my [discord server](https://discord.gg/bpEGPyH55Q) and @ Genesis.
 
+Some notable changes and updates:
+1. Finally added the anime editor, so you can edit your anime statuses directly from the web extension.
+2. Fixed notifications tab from being blank.
+
 #### Click below to get your respective extension from their web store:
 
 [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/animouto-experimental/)
 
 [Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef)
+
+(YOU DO NOT NEED THE ORIGINAL ANIMOUTO EXTENSION FOR THIS EXTENSION TO WORK)
 
 ### The original owner reserves all rights to this application and may request for this repository to be privated.
 
