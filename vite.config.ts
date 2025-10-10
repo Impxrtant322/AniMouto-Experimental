@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
     case "firefox": {
       if (configEnv.EXTENSION_KEY)
         // @ts-ignore
-        manifest.browser_specific_settings = { gecko: { id: configEnv.EXTENSION_KEY, update_url: configEnv.UPDATE_URL } };
+        manifest.browser_specific_settings = { gecko: { id: configEnv.EXTENSION_KEY } };
       break;
     }
   }
