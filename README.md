@@ -15,6 +15,8 @@ Some notable changes and updates:
 
 [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/animouto-experimental/)
 
+- (Not yet listed on AMO, check github releases instead)
+
 [Chromium](https://chromewebstore.google.com/detail/animouto-experimental/cbhiciobopkafdkekindhidajdhkioef)
 
 (YOU DO NOT NEED THE ORIGINAL ANIMOUTO EXTENSION FOR THIS EXTENSION TO WORK)
