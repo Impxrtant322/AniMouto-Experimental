@@ -31,7 +31,7 @@ AniMouto is designed to feel like a true extension to AniList by providing a ver
 
 ## Images
 
-<img src="https://animouto.moe/preview/list.png" width="280"> <img src="https://animouto.moe/preview/search.png" width="280"> <img src="https://animouto.moe/preview/details.png" width="280"> <img src="https://animouto.moe/preview/notifications.png" width="280">
+<img src="https://animouto.moe/preview/list.png" width="280"> <img src="https://animouto.moe/preview/search.png" width="280"> <img src="https://animouto.moe/preview/details.png" width="280"> <img src="https://animouto.moe/preview/notifications.png" width="280"> <img src="https://github.com/Impxrtant322/AniMouto-Experimental/blob/master/images/animoutoEditor.png" width="280">
 
 ## Contributing
 
