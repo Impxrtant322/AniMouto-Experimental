@@ -22,11 +22,14 @@ const [ currentExtensionConfig_, previousExtensionConfig_ ] = withPrevious<Exten
   notifications: {
     enablePolling: true,
     pollingInterval: 1,
-    desktopNotifications: false
+    desktopNotifications: false,
+    showWhatsNewModal: true
   },
   debug: {
-    displayQueryLimits: false
-  }
+    displayQueryLimits: false,
+    showExternalLinks: true,
+    seenUpdateVersion: ""
+  },
 });
 
 export const extensionConfig = currentExtensionConfig_;

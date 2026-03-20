@@ -165,10 +165,19 @@
         <span class="ml-2">Desktop Notifications</span>
       </label>
       <p>Pushes AniList notifications to your desktop. Requires you to accept the permission popup, then enable it again.</p>
+      <label class="flex items-center mt-4 text-lg cursor-pointer">
+        <input
+          type="checkbox"
+          class="w-5 h-5"
+          bind:checked={$extensionConfig.notifications.showWhatsNewModal}
+        >
+        <span class="ml-2">Show What's New Modal</span>
+      </label>
+      <p>Displays the What's New popup when a new extension update is available.</p>
     </Section>
   {/if}
   <Section title="Debug">
-    <label class="flex items-center text-lg cursor-pointer">
+    <label class="flex items-center mt-4 text-lg cursor-pointer">
       <input 
         type="checkbox"
         class="w-5 h-5"
@@ -177,6 +186,15 @@
       <span class="ml-2">Display Query Limits</span>
     </label>
     <p>Adds an overlay that displays the current rate limit status.</p>
+    <label class="flex items-center mt-4 text-lg cursor-pointer">
+      <input
+        type="checkbox"
+        class="w-5 h-5"
+        bind:checked={$extensionConfig.debug.showExternalLinks}
+      >
+      <span class="ml-2">Show External Links</span>
+    </label>
+    <p>Displays AniList external link buttons on media list cards.</p>
   </Section>
     <p style="text-align: center">Version: {version}</p>
 </div>

@@ -34,10 +34,13 @@ export type NotificationConfiguration = {
   enablePolling: boolean
   pollingInterval: number
   desktopNotifications: boolean
+  showWhatsNewModal: boolean
 }
 
 export type DebugConfiguration = {
   displayQueryLimits: boolean
+  showExternalLinks: boolean,
+  seenUpdateVersion: string
 }
 
 export type ExtensionConfiguration = {

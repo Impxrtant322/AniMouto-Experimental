@@ -12,6 +12,8 @@
   import NavLink from "$lib/components/NavLink.svelte";
   import Routes from "$lib/components/Routes.svelte";
   import DebugOverlay from "$lib/components/DebugOverlay.svelte";
+  import WhatsNewModal from "$lib/components/WhatsNewModal.svelte";
+  import { WHATS_NEW } from "$lib/constants/whatsNew";
 
   const history = createHistory(createHashedHistory());
 
@@ -19,7 +21,26 @@
 
   let scrollAnchor: HTMLElement;
 
+  $: showWhatsNew =
+    $loggedIn &&
+    $extensionConfig.notifications.showWhatsNewModal &&
+    $extensionConfig.debug.seenUpdateVersion !== WHATS_NEW.version;
+
   onMount(async () => {
+    if ($extensionConfig.debug.showExternalLinks === undefined || $extensionConfig.notifications.showWhatsNewModal === undefined) {
+      $extensionConfig = {
+        ...$extensionConfig,
+        debug: {
+          ...$extensionConfig.debug,
+          showExternalLinks: $extensionConfig.debug.showExternalLinks ?? true,
+        },
+        notifications: {
+          ...$extensionConfig.notifications,
+          showWhatsNewModal: $extensionConfig.notifications.showWhatsNewModal ?? true
+        }
+      };
+    }
+
     history.navigate($lastPage);
     history.listen(h => {
       $lastPage = h.location.pathname;
@@ -31,6 +52,16 @@
       await storage.local.set({ unreadNotificationCount: $unreadNotifications });
     }
   });
+
+  function dismissWhatsNew() {
+    $extensionConfig = {
+      ...$extensionConfig,
+      debug: {
+        ...$extensionConfig.debug,
+        seenUpdateVersion: WHATS_NEW.version
+      }
+    };
+  }
 
   function handleClick(e: MouseEvent) {
     if (e.button === 1 && e.target instanceof Element) {
@@ -78,10 +109,19 @@
         <img src={anilistLogo} alt="AniList Logo">
       </a>
     </nav>
-    <div class="flex-1 p-2 relative h-full bg-background text-text-400 overflow-y-auto overflow-x-hidden">
+    <div class="flex-1 p-2 relative h-full bg-background text-text-400 overflow-x-hidden {showWhatsNew ? 'overflow-y-hidden' : 'overflow-y-auto'}">
       <div class="absolute top-0 w-0 h-0 pointer-events-none" bind:this={scrollAnchor} />
       <DebugOverlay />
       <Routes />
+
+      {#if showWhatsNew}
+        <WhatsNewModal
+          title={WHATS_NEW.title}
+          version={WHATS_NEW.version}
+          items={WHATS_NEW.items}
+          onClose={dismissWhatsNew}
+        />
+      {/if}
     </div>
   </Router>
 </div>

@@ -1,6 +1,8 @@
 <script lang="ts">
   import { getContextClient, mutationStore } from "@urql/svelte";
   import ripple from "svelte-ripple";
+  import Icon from "svelte-fa";
+  import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
   import { UpdateMediaListProgressDocument, MediaListStatus, type GetUserMediaListQuery } from "@anilist/graphql";
   import { extensionConfig } from "$lib/store";
   import { readableTime, parseSeconds } from "$lib/util";
@@ -36,6 +38,21 @@
 </script>
 
 <MediaCard media={listEntry.media}>
+  {#if $extensionConfig.debug.showExternalLinks && listEntry.media.siteUrl}
+    <a
+      href={listEntry.media.siteUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Open on AniList"
+      class="absolute top-1 left-1 z-20 flex h-5 w-5 items-center justify-center opacity-90 hover:scale-110 hover:opacity-80 transition-all"
+      on:click|stopPropagation
+    >
+      <Icon
+        icon={faExternalLinkAlt}
+        class="text-white text-[12px] mix-blend-difference drop-shadow-[0_0_1px_rgba(0,0,0,0.85)]"
+      />
+    </a>
+  {/if}
   <svelte:fragment slot="tooltip-body">
     {#if behindCount > 0}
       <span class="text-red mb-2">{behindCount} episode{behindCount === 1 ? "" : "s"} behind</span>
