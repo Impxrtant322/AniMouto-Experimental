@@ -4,7 +4,7 @@
   import { GetNotificationsDocument, NotificationType } from "@anilist/graphql";
   import { unreadNotifications } from "$lib/store";
   import QueryContainer from "$lib/components/QueryContainer.svelte";
-  import { ActivityNotification, MediaNotification, MediaMergeNotification, MediaDeletionNotification, ThreadNotification, UnknownNotification } from "$lib/components/notifications";
+  import { ActivityNotification, MediaNotification, MediaMergeNotification, MediaDeletionNotification, ThreadNotification, SubmissionNotification, UnknownNotification } from "$lib/components/notifications";
 
   export let page: number;
 
@@ -55,6 +55,10 @@
       case NotificationType.THREAD_LIKE:
       case NotificationType.THREAD_SUBSCRIBED:
         return ThreadNotification;
+      case NotificationType.MEDIA_SUBMISSION_UPDATE:
+      case NotificationType.STAFF_SUBMISSION_UPDATE:
+      case NotificationType.CHARACTER_SUBMISSION_UPDATE:
+        return SubmissionNotification;
       default:
         return UnknownNotification;
     }

@@ -105,6 +105,36 @@ async function handleDesktopNotifications(totalUnread: number) {
           createNotification(notification.thread!.url + "/comment/" + notification.commentId, "Forum Activity", notification.type, { user: notification.user!.name, thread: notification.thread!.title });
           break;
         }
+        case NotificationType.MEDIA_DATA_CHANGE: {
+          createNotification(notification.media!.url, "Site Data Change", notification.type,
+            { media: notification.media?.title?.userPreferred });
+          break;
+        }
+        case NotificationType.MEDIA_MERGE: {
+          createNotification(notification.media!.url, "Media Merge", notification.type,
+            { media: notification.media?.title?.userPreferred, merged: (notification.deletedMediaTitles ?? []).join(", ") });
+          break;
+        }
+        case NotificationType.MEDIA_DELETION: {
+          createNotification("https://anilist.co/notifications", "Media Deletion", notification.type,
+            { deleted: notification.deletedMediaTitle });
+          break;
+        }
+        case NotificationType.MEDIA_SUBMISSION_UPDATE: {
+          createNotification(notification.media?.url ?? "https://anilist.co/notifications", "Submission Update", notification.type,
+            { media: notification.media?.title?.userPreferred ?? notification.submittedTitle, status: notification.status });
+          break;
+        }
+        case NotificationType.STAFF_SUBMISSION_UPDATE: {
+          createNotification(notification.staff!.url, "Submission Update", notification.type,
+            { staff: notification.staff?.name?.full, status: notification.status });
+          break;
+        }
+        case NotificationType.CHARACTER_SUBMISSION_UPDATE: {
+          createNotification(notification.character!.url, "Submission Update", notification.type,
+            { character: notification.character?.name?.full, status: notification.status });
+          break;
+        }
         default: {
           createNotification("unknown", "unknown", null);
         }
@@ -129,14 +159,17 @@ const notificationContexts = {
   following: "{user} started following you.",
   airing: "Episode {episode} of {media} aired.",
   related_media_addition: "{media} was recently added to the site.",
-  media_data_change: "{media} recieved site data changes.",
+  media_data_change: "{media} received site data changes.",
   media_deletion: "{deleted} was deleted from the site.",
   media_merge: "{merged} was merged into {media}.",
   thread_like: "{user} liked your forum thread, {thread}.",
-  thread_subscribed: "{user} commented in your subscribed forum thread  {thread}.",
+  thread_subscribed: "{user} commented in your subscribed forum thread {thread}.",
   thread_comment_like: "{user} liked your comment, in the forum thread {thread}.",
   thread_comment_reply: "{user} replied to your comment, in the forum thread {thread}.",
   thread_comment_mention: "{user} mentioned you, in the forum thread {thread}.",
+  media_submission_update: "Your submission for {media} was {status}.",
+  staff_submission_update: "Your staff submission for {staff} was {status}.",
+  character_submission_update: "Your character submission for {character} was {status}.",
 }
 
 export function formatHandlebars(template: string, data?: any) {
@@ -171,4 +204,4 @@ function createNotification(id: string, titleType: string, type?: NotificationTy
   }
 }
 
-const notificationQuery = "query($amount: Int, $page: Int) { Page(perPage: $amount, page: $page) { notifications(resetNotificationCount: false) { ... on ActivityLikeNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityMentionNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityMessageNotification { id activityId user { ...user } activity: message { url: siteUrl } activityId context createdAt type } ... on ActivityReplyLikeNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityReplyNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityLikeNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityReplySubscribedNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on AiringNotification { id media { ...media } episode contexts createdAt type } ... on RelatedMediaAdditionNotification { id media { ...media } context createdAt type } ... on FollowingNotification { id user { ...user } context createdAt type } ... on ThreadCommentLikeNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadCommentMentionNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadCommentReplyNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadCommentSubscribedNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadLikeNotification { id thread { ...thread } user { ...user } context createdAt type } } } } fragment media on Media { title { userPreferred } url: siteUrl } fragment user on User { name url: siteUrl } fragment thread on Thread { title url: siteUrl } fragment activity on ActivityUnion { __typename ... on TextActivity { url: siteUrl } ... on ListActivity { url: siteUrl } ... on MessageActivity { url: siteUrl } }";
+const notificationQuery = "query($amount: Int, $page: Int) { Page(perPage: $amount, page: $page) { notifications(resetNotificationCount: false) { __typename ... on ActivityLikeNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityMentionNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityMessageNotification { id activityId user { ...user } activity: message { url: siteUrl } activityId context createdAt type } ... on ActivityReplyLikeNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityReplyNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on ActivityReplySubscribedNotification { id activityId user { ...user } activity { ...activity } context createdAt type } ... on AiringNotification { id media { ...media } episode contexts createdAt type } ... on RelatedMediaAdditionNotification { id media { ...media } context createdAt type } ... on FollowingNotification { id user { ...user } context createdAt type } ... on ThreadCommentLikeNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadCommentMentionNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadCommentReplyNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadCommentSubscribedNotification { id thread { ...thread } user { ...user } commentId context createdAt type } ... on ThreadLikeNotification { id thread { ...thread } user { ...user } context createdAt type } ... on MediaDataChangeNotification { id media { ...media } context reason createdAt type } ... on MediaMergeNotification { id media { ...media } deletedMediaTitles context reason createdAt type } ... on MediaDeletionNotification { id deletedMediaTitle context reason createdAt type } ... on MediaSubmissionUpdateNotification { id media { ...media } submittedTitle status notes createdAt type } ... on StaffSubmissionUpdateNotification { id staff { name { full } url: siteUrl } status notes createdAt type } ... on CharacterSubmissionUpdateNotification { id character { name { full } url: siteUrl } status notes createdAt type } } } } fragment media on Media { title { userPreferred } url: siteUrl } fragment user on User { name url: siteUrl } fragment thread on Thread { title url: siteUrl } fragment activity on ActivityUnion { __typename ... on TextActivity { url: siteUrl } ... on ListActivity { url: siteUrl } ... on MessageActivity { url: siteUrl } }";

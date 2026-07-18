@@ -4,3 +4,4 @@ export { default as MediaMergeNotification } from "./MediaMergeNotification.svel
 export { default as MediaDeletionNotification } from "./MediaDeletionNotification.svelte";
 export { default as ThreadNotification } from "./ThreadNotification.svelte";
 export { default as UnknownNotification } from "./UnknownNotification.svelte";
+export { default as SubmissionNotification } from "./SubmissionNotification.svelte";

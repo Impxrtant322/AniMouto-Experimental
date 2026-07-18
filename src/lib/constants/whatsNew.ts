@@ -4,6 +4,8 @@ export const WHATS_NEW = {
   version: version,
   title: "What's New",
   items: [
-    "FIX: Repaired notifications tab from blanking out due to invalid time."
+    "NEW: Support for submission notifications (media, staff, and character reviews).",
+    "FIX: \"Unknown notification type\" error when receiving submission updates.",
+    "FIX: Minor notification text grammar and spelling corrections."
   ]
 };
